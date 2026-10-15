@@ -36,8 +36,9 @@ function initCalculator() {
   let currentRate = 0.15; // 15% upfront for 3 months; 45% for 6 months
 
   function formatNaira(num) {
+    const isWhole = Number(num) % 1 === 0;
     return '₦' + Number(num).toLocaleString('en-NG', {
-      minimumFractionDigits: 2,
+      minimumFractionDigits: isWhole ? 0 : 2,
       maximumFractionDigits: 2
     });
   }
