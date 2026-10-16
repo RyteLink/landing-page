@@ -12,8 +12,8 @@ Official high-performance responsive landing page for **RyteLink** — Africa's 
 
 * **⚡ Trade Cycle Financing with Instant Cash Withdrawal**:
   * Fund verified physical electronics inventory batches (MacBooks, iPhones, Dell XPS).
-  * Receive upfront interest (15% for 3 months, 45% for 6 months) withdrawable to any Nigerian bank account on Day 1.
-  * Capital returned or reinvested automatically at 90 or 180 days maturity.
+  * Receive upfront interest (10% for 3 months) withdrawable to any Nigerian bank account on Day 1.
+  * Capital returned or reinvested automatically at 90 days maturity.
 * **🇺🇸 Authentic North American Electronics Sourcing**:
   * Direct authorized US distributors partnership with factory-unlocked, valid warranty inventory.
   * Embedded store integration powered by **Timgift.com** with express air-freight logistics to Lagos, Abuja, and nationwide.

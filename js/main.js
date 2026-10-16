@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
    - Minimum: ₦5,000
    - Maximum: ₦10,000,000
    - Upfront Interest: Paid and withdrawable immediately to Nigerian banks
-   - Capital Return: Available in 3 months (or 6 months) at maturity
+   - Capital Return: Available in 3 months at maturity
    ========================================================================== */
 function initCalculator() {
   const slider = document.getElementById('investmentAmount');
@@ -33,7 +33,7 @@ function initCalculator() {
 
   let currentAmount = 500000;
   let currentMonths = 3;
-  let currentRate = 0.15; // 15% upfront for 3 months; 45% for 6 months
+  let currentRate = 0.10; // 10% upfront for 3 months only
 
   function formatNaira(num) {
     const isWhole = Number(num) % 1 === 0;
@@ -44,7 +44,7 @@ function initCalculator() {
   }
 
   function updateCalculations() {
-    // Upfront interest payout
+    // Upfront interest payout (10% upfront for 3 months)
     const upfrontInterest = currentAmount * currentRate;
     const capitalReturn = currentAmount;
     const totalReturn = capitalReturn + upfrontInterest;
@@ -55,12 +55,7 @@ function initCalculator() {
     principalDisplay.textContent = formatNaira(currentAmount);
     capitalReturnDisplay.textContent = formatNaira(capitalReturn);
     totalReturnDisplay.textContent = formatNaira(totalReturn);
-
-    if (currentMonths === 3) {
-      maturityPeriodDisplay.textContent = '3 Months (90 Days)';
-    } else {
-      maturityPeriodDisplay.textContent = '6 Months (180 Days)';
-    }
+    maturityPeriodDisplay.textContent = '3 Months (90 Days)';
   }
 
   // Slider change
@@ -93,14 +88,14 @@ function initCalculator() {
     });
   });
 
-  // Tenure buttons
+  // Tenure buttons (3 Months @ 10%)
   tenureButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       tenureButtons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      currentMonths = parseInt(btn.getAttribute('data-months'), 10);
-      currentRate = parseFloat(btn.getAttribute('data-rate'));
+      currentMonths = parseInt(btn.getAttribute('data-months'), 10) || 3;
+      currentRate = parseFloat(btn.getAttribute('data-rate')) || 0.10;
       updateCalculations();
     });
   });
