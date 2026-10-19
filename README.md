@@ -39,7 +39,7 @@ Official high-performance responsive landing page for **RyteLink** — Africa's 
 
 ## 🌐 Live Deployment
 
-* **Production URL**: [https://beautiful-palmier-21e763.netlify.app/](https://beautiful-palmier-21e763.netlify.app/)
+* **Production URL**: [https://rytelink.com/](https://rytelink.com/)
 * **Platform**: Netlify (Automatic continuous deployment from the `main` branch)
 
 ---
