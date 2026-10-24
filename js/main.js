@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeaderScroll();
   initFooterYear();
   initLazySections();
+  initLegalToc();
 });
 
 /* ==========================================================================
@@ -260,5 +261,39 @@ function initLazySections() {
     // Fallback if IntersectionObserver is not supported
     sections.forEach(sec => sec.classList.add('is-loaded'));
   }
+}
+
+/* ==========================================================================
+   9. Legal Document Table of Contents ScrollSpy
+   ========================================================================== */
+function initLegalToc() {
+  const tocLinks = document.querySelectorAll('.legal-toc-link');
+  const sections = document.querySelectorAll('.legal-section');
+  if (!tocLinks.length || !sections.length) return;
+
+  function onScroll() {
+    let currentId = '';
+    const scrollPos = window.scrollY + 130;
+
+    sections.forEach(sec => {
+      const top = sec.offsetTop;
+      const height = sec.offsetHeight;
+      if (scrollPos >= top && scrollPos < top + height) {
+        currentId = sec.getAttribute('id');
+      }
+    });
+
+    if (currentId) {
+      tocLinks.forEach(link => {
+        if (link.getAttribute('href') === '#' + currentId) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
 }
 
