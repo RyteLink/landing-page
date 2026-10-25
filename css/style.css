@@ -3223,3 +3223,148 @@ button, input, select, textarea {
   }
 }
 
+/* ==========================================================================
+   Floating WhatsApp Button (Fixed Bottom-Right)
+   ========================================================================== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 58px;
+  height: 58px;
+  background-color: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.42), 0 2px 8px rgba(18, 34, 49, 0.15);
+  z-index: 9990;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-4px) scale(1.06);
+  box-shadow: 0 8px 26px rgba(37, 211, 102, 0.55), 0 4px 12px rgba(18, 34, 49, 0.2);
+}
+
+.whatsapp-float:active {
+  transform: scale(0.94);
+}
+
+.whatsapp-float .whatsapp-icon {
+  width: 32px;
+  height: 32px;
+  position: relative;
+  z-index: 2;
+}
+
+.whatsapp-float-pulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  border: 2px solid #25D366;
+  animation: waPulse 2.4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes waPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+.whatsapp-float-tooltip {
+  position: absolute;
+  right: 70px;
+  background-color: #122231;
+  color: #FFFFFF;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  pointer-events: none;
+}
+
+.whatsapp-float-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -5px;
+  transform: translateY(-50%);
+  border-width: 5px 0 5px 6px;
+  border-style: solid;
+  border-color: transparent transparent transparent #122231;
+}
+
+.whatsapp-float:hover .whatsapp-float-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+@media (max-width: 640px) {
+  .whatsapp-float {
+    bottom: 20px;
+    right: 20px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .whatsapp-float .whatsapp-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .whatsapp-float-tooltip {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Suppress Netlify Injected Drawers, Badges & Feedback Widgets
+   ========================================================================== */
+#netlify-drawer,
+#netlify-drawer-iframe,
+[data-netlify-drawer],
+.netlify-badge,
+.netlify-drawer,
+iframe[src*="netlify.com"],
+iframe[src*="netlify-drawer"],
+iframe[id*="netlify"],
+div[class*="netlify-drawer"],
+div[id*="netlify-drawer"],
+div[id*="netlify-badge"],
+a[href*="netlify.com"][class*="badge"],
+[class*="netlify-feedback"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+}
+

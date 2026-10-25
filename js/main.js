@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFooterYear();
   initLazySections();
   initLegalToc();
+  suppressNetlifyBadge();
 });
 
 /* ==========================================================================
@@ -295,5 +296,43 @@ function initLegalToc() {
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
+}
+
+/* ==========================================================================
+   10. Suppress / Remove Injected Netlify Badge & Drawer Overlays
+   ========================================================================== */
+function suppressNetlifyBadge() {
+  const selector = [
+    '#netlify-drawer',
+    '#netlify-drawer-iframe',
+    '[data-netlify-drawer]',
+    '.netlify-badge',
+    '.netlify-drawer',
+    'iframe[src*="netlify.com"]',
+    'iframe[src*="netlify-drawer"]',
+    'iframe[id*="netlify"]',
+    'div[class*="netlify-drawer"]',
+    'div[id*="netlify-drawer"]',
+    'div[id*="netlify-badge"]',
+    'a[href*="netlify.com"][class*="badge"]',
+    '[class*="netlify-feedback"]'
+  ].join(', ');
+
+  function purge() {
+    try {
+      const items = document.querySelectorAll(selector);
+      items.forEach(el => {
+        el.style.display = 'none';
+        el.remove();
+      });
+    } catch (_) {}
+  }
+
+  purge();
+
+  if (typeof MutationObserver !== 'undefined' && document.body) {
+    const observer = new MutationObserver(() => purge());
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
 }
 
